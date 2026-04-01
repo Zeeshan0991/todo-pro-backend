@@ -26,7 +26,7 @@ Backend API for a Todo application with workspaces, projects, and task managemen
 ## ⚙️ Installation & Setup
 
 1. Clone the repository:
-git clone https://github.com/your-username/todo-pro-backend.git
+git clone https://github.com/Zeeshan0991/todo-pro-backend.git
 
 2. Navigate to project folder:
 cd todo-pro-backend
