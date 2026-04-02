@@ -1,3 +1,5 @@
+require("dotenv").config(); // 🔥 IMPORTANT
+
 const jwt = require("jsonwebtoken");
 const User = require("../entities/user.entity");
 
@@ -13,7 +15,6 @@ const authMiddleware = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // ✅ FIX HERE
     const user = await User.findByPk(decoded.userId, {
       attributes: ["id", "email"],
     });
@@ -22,7 +23,7 @@ const authMiddleware = async (req, res, next) => {
       return res.status(401).json({ message: "User not found" });
     }
 
-    req.user = user; // important
+    req.user = user;
     next();
   } catch (error) {
     return res.status(401).json({ message: "Invalid token" });

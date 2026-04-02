@@ -1,6 +1,5 @@
 const userService = require("../services/user.service");
 
-
 const getAllUsers = async (req, res) => {
   try {
     const users = await userService.getAllUsers();
@@ -12,7 +11,6 @@ const getAllUsers = async (req, res) => {
     });
   }
 };
-
 
 const registerUser = async (req, res) => {
   try {

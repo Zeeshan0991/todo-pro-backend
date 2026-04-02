@@ -1,6 +1,5 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
 
 const User = require("../entities/user.entity");
 const Workspace = require("../entities/workspace.entity");
@@ -11,10 +10,8 @@ const Workspace = require("../entities/workspace.entity");
 const registerUser = async (userData) => {
   const { name, email, password } = userData;
 
-  // Normalize email
   const normalizedEmail = email.trim().toLowerCase();
 
-  // Check if user already exists
   const existingUser = await User.findOne({
     where: { email: normalizedEmail },
   });
@@ -43,7 +40,6 @@ const registerUser = async (userData) => {
 // LOGIN USER
 // ==============================
 const loginUser = async ({ email, password }) => {
-  // Normalize email
   const normalizedEmail = email.trim().toLowerCase();
 
   const user = await User.findOne({
