@@ -1,9 +1,9 @@
-require("dotenv").config(); // Load env first
+require("dotenv").config();
 
 const app = require("./src/app");
 const sequelize = require("./src/config/db");
 
-// Load models & relations
+// Load models
 require("./src/entities");
 
 const PORT = process.env.PORT || 8080;
@@ -13,14 +13,12 @@ const PORT = process.env.PORT || 8080;
     await sequelize.authenticate();
     console.log("✅ PostgreSQL connected");
 
-    // ✅ safer for production
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
     console.log("✅ Database synced");
 
     app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
     });
-
   } catch (err) {
     console.error("❌ Startup error:", err);
   }
